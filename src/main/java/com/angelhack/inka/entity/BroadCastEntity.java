@@ -1,9 +1,6 @@
 package com.angelhack.inka.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 
 /**
  * Created by Mikhail_Voloshin on 6/20/2015.
@@ -13,7 +10,9 @@ import javax.persistence.OneToOne;
 public class BroadCastEntity {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     @OneToOne
     private ItemEntity item;
 
