@@ -106,9 +106,13 @@
                 <groupId>org.apache.tomcat.maven</groupId>
                 <artifactId>tomcat7-maven-plugin</artifactId>
                 <version>2.2</version>
-                <!--<configuration>-->
-                    <!--<port>8081</port>-->
-                <!--</configuration>-->
+                <configuration>
+                    <!-- Tomcat 7 has a different manager path - text - than other versions -->
+                    <url>http://localhost:8080/manager/text</url>
+                    <!-- Refer to the server settings in your ~/.m2/settings.xml -->
+                    <server>dev-tomcat</server>
+                    <path>/shoptimizer</path>
+                </configuration>
             </plugin>
         </plugins>
 

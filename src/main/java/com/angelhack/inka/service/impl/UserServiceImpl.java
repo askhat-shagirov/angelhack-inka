@@ -6,12 +6,14 @@ import com.angelhack.inka.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 /**
  * Created by Askhat_Shagirov on 20-Jun-15.
  */
 @Service
+@Transactional
 public class UserServiceImpl implements UserService {
 
     @Autowired
