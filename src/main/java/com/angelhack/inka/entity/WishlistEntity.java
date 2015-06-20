@@ -1,6 +1,8 @@
 package com.angelhack.inka.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 import javax.persistence.*;
 import java.util.List;
@@ -13,6 +15,7 @@ public class WishlistEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(unique = true)
     private Long id;
 
     private String name;
@@ -22,7 +25,8 @@ public class WishlistEntity {
     @JoinColumn(name = "USER_ID")
     private UserEntity user;
 
-    @OneToMany(fetch = FetchType.EAGER)
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "wishlist")
+    @Fetch(FetchMode.SUBSELECT)
     private List<ItemEntity> items;
 
     public Long getId() {

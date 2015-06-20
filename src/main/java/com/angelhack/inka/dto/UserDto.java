@@ -1,6 +1,9 @@
 package com.angelhack.inka.dto;
 
+import com.angelhack.inka.common.ItemCategory;
 import com.angelhack.inka.common.UserType;
+
+import java.util.List;
 
 /**
  * Created by Askhat_Shagirov on 20-Jun-15.
@@ -11,6 +14,7 @@ public class UserDto {
     private String password;
     private String name;
     private UserType userType;
+    private List<ItemCategory> categories;
 
     public String getEmail() {
         return email;
@@ -42,5 +46,13 @@ public class UserDto {
 
     public void setUserType(UserType userType) {
         this.userType = userType;
+    }
+
+    public List<ItemCategory> getCategories() {
+        return categories;
+    }
+
+    public void setCategories(List<ItemCategory> categories) {
+        this.categories = categories;
     }
 }

@@ -33,7 +33,8 @@ public class WishListController {
     @RequestMapping(method = RequestMethod.GET)
     public List<WishlistEntity> getWishlists() {
         Long currentUserId = securityService.getCurrentUserId();
-        return wishlistService.getWishlists(currentUserId);
+        List<WishlistEntity> wishlists = wishlistService.getWishlists(currentUserId);
+        return wishlists;
     }
 
     @RequestMapping(value = "/{wishlistId}", method = RequestMethod.POST)

@@ -34,13 +34,18 @@ public class WishlistServiceImpl implements WishlistService {
     public void createWishlist(Long currentUserId, WishlistEntity wishlist) {
         UserEntity user = userRepository.findOne(currentUserId);
         wishlistRepository.saveAndFlush(wishlist);
+        for (ItemEntity itemEntity : wishlist.getItems()) {
+            itemRepository.saveAndFlush(itemEntity);
+            itemEntity.setWishlist(wishlist);
+        }
         user.getWishlists().add(wishlist);
         wishlist.setUser(user);
     }
 
     @Override
     public List<WishlistEntity> getWishlists(Long currentUserId) {
-        return userRepository.findOne(currentUserId).getWishlists();
+        UserEntity user = userRepository.findOne(currentUserId);
+        return user.getWishlists();
     }
 
     @Override

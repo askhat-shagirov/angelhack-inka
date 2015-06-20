@@ -1,6 +1,7 @@
 package com.angelhack.inka.entity;
 
-import com.angelhack.inka.common.UserType;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 import javax.persistence.*;
 import java.util.List;
@@ -15,7 +16,8 @@ public class UserEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToMany(fetch = FetchType.EAGER)
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "user")
+    @Fetch(FetchMode.SUBSELECT)
     private List<WishlistEntity> wishlists;
 
     @Column(unique=true)

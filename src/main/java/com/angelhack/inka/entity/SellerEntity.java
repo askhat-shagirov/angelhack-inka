@@ -15,7 +15,7 @@ public class SellerEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(unique=true)
+    @Column(unique = true)
     private String email;
 
     //TODO: add encryption
@@ -61,6 +61,7 @@ public class SellerEntity {
         this.fullname = fullname;
     }
 
+
 	public Collection<StoreEntity> getStores() {
 		return stores;
 	}
@@ -69,6 +70,7 @@ public class SellerEntity {
 		this.stores = stores;
 	}
 	
+
     public List<ItemCategory> getCategories() {
         return categories;
     }
@@ -76,6 +78,5 @@ public class SellerEntity {
     public void setCategories(List<ItemCategory> categories) {
         this.categories = categories;
     }
-    
-    
+
 }

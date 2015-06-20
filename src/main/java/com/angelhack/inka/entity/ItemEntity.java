@@ -16,6 +16,7 @@ import javax.persistence.OneToMany;
 import com.angelhack.inka.common.ItemCategory;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+
 /**
  * Created by Mikhail_Voloshin on 6/20/2015.
  */
@@ -85,6 +86,7 @@ public class ItemEntity {
     public Boolean getGpsNotification() {
         return gpsNotification;
     }
+
 
     public void setGpsNotification(Boolean gpsNotification) {
         this.gpsNotification = gpsNotification;
