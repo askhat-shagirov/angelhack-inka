@@ -12,6 +12,6 @@ import com.angelhack.inka.entity.DiscountEntity;
 @Repository
 public interface DiscountRepository extends JpaRepository<DiscountEntity, Long> {
 	
-	@Query("select d from DiscountEntity d where d.item_id = :itemId")
+	//@Query("select d from DiscountEntity d where d.item_id = :itemId")
 	public List<DiscountEntity> findByItemId(@Param("itemId")Long itemId);
 }
