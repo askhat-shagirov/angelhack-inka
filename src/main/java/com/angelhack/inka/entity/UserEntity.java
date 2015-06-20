@@ -4,7 +4,6 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import java.util.List;
-import java.util.Set;
 
 /**
  * Created by Mikhail_Voloshin on 6/20/2015.

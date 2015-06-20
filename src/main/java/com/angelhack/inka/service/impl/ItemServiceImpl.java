@@ -5,12 +5,16 @@ import com.angelhack.inka.entity.UserEntity;
 import com.angelhack.inka.repository.UserRepository;
 import com.angelhack.inka.service.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 /**
  * Created by Mikhail_Voloshin on 6/20/2015.
  */
+@Service
+@Transactional
 public class ItemServiceImpl implements ItemService {
 
     @Autowired
