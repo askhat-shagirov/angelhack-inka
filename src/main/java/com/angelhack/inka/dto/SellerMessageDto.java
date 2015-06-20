@@ -7,7 +7,7 @@ public class SellerMessageDto {
 
     private Long id;
     private String name;
-    private String description;
+    private Long quantity;
 
     public Long getId() {
         return id;
@@ -25,11 +25,11 @@ public class SellerMessageDto {
         this.name = name;
     }
 
-    public String getDescription() {
-        return description;
+    public Long getQuantity() {
+        return quantity;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setQuantity(Long quantity) {
+        this.quantity = quantity;
     }
 }
