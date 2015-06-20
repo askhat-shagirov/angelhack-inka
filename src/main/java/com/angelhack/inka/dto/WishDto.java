@@ -12,6 +12,7 @@ public class WishDto {
     private Long itemId;
     private String name;
     private List<ItemCategory> categories;
+    private Long quantity;
 
     public Long getItemId() {
         return itemId;
@@ -35,5 +36,13 @@ public class WishDto {
 
     public void setCategories(List<ItemCategory> categories) {
         this.categories = categories;
+    }
+
+    public void setQuantity(Long quantity) {
+        this.quantity = quantity;
+    }
+
+    public Long getQuantity() {
+        return quantity;
     }
 }

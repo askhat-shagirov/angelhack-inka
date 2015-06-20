@@ -43,6 +43,7 @@ public class WishServiceImpl implements WishService {
             wish.setItemId(item.getId());
             wish.setName(item.getName());
             wish.setCategories(item.getCategories());
+            wish.setQuantity(item.getQuantity());
             list.add(wish);
         }
         return list;

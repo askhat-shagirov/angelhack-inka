@@ -38,7 +38,7 @@ public class SellerMessageServiceImpl implements SellerMessageService {
             SellerMessageDto message = new SellerMessageDto();
             message.setId(item.getId());
             message.setName(item.getName());
-            message.setDescription(item.getDescription());
+            message.setQuantity(item.getQuantity());
             messageDtos.add(message);
         }
 

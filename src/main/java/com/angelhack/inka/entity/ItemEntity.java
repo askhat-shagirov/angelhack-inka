@@ -16,7 +16,7 @@ public class ItemEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
-    private String description;
+    private Long quantity;
 
     private Boolean gpsNotification;
     private Boolean broadcast;
@@ -53,12 +53,12 @@ public class ItemEntity {
         this.wishlist = wishlist;
     }
 
-    public String getDescription() {
-        return description;
+    public Long getQuantity() {
+        return quantity;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setQuantity(Long quantity) {
+        this.quantity = quantity;
     }
 
     public List<ItemCategory> getCategories() {
