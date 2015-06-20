@@ -1,6 +1,8 @@
 package com.angelhack.inka.controller;
 
 import com.angelhack.inka.entity.TestEntity;
+import com.angelhack.inka.service.TestService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -12,12 +14,17 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/hello")
 public class TestController {
 
+    @Autowired
+    private TestService testService;
+
     @RequestMapping(method = RequestMethod.GET)
     public TestEntity test() {
-        TestEntity ent = new TestEntity();
-        ent.setId(123L);
-        ent.setName("Name");
-        return ent;
+        return testService.getLatest();
+    }
+
+    @RequestMapping(method = RequestMethod.POST)
+    public void save(TestEntity test) {
+        testService.save(test);
     }
 
 }
