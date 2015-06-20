@@ -1,6 +1,9 @@
 package com.angelhack.inka.entity;
 
+import java.util.Collection;
+import com.angelhack.inka.common.ItemCategory;
 import javax.persistence.*;
+import java.util.List;
 
 /**
  * Created by Askhat_Shagirov on 20-Jun-15.
@@ -19,6 +22,12 @@ public class SellerEntity {
     private String password;
 
     private String fullname;
+    
+    @OneToMany(mappedBy="seller")
+    private Collection<StoreEntity> stores;
+    
+    @ElementCollection(targetClass = ItemCategory.class, fetch = FetchType.EAGER)
+    private List<ItemCategory> categories;
 
     public Long getId() {
         return id;
@@ -51,4 +60,22 @@ public class SellerEntity {
     public void setFullname(String fullname) {
         this.fullname = fullname;
     }
+
+	public Collection<StoreEntity> getStores() {
+		return stores;
+	}
+
+	public void setStores(Collection<StoreEntity> stores) {
+		this.stores = stores;
+	}
+	
+    public List<ItemCategory> getCategories() {
+        return categories;
+    }
+
+    public void setCategories(List<ItemCategory> categories) {
+        this.categories = categories;
+    }
+    
+    
 }

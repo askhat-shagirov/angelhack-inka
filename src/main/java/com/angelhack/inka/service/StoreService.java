@@ -13,5 +13,5 @@ public interface StoreService {
 
     StoreEntity save(StoreEntity test);
     
-    List<StoreDto> findNearByStores(double longitude, double latitude,  List<ItemCategory> storeTypes, double radius);
+    List<StoreDto> findNearByStores(double longitude, double latitude,  List<ItemCategory> storeTypes, double radius, String name);
 }

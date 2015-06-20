@@ -1,5 +1,6 @@
 package com.angelhack.inka.dto;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.angelhack.inka.entity.StoreEntity;
@@ -12,7 +13,8 @@ public class StoreDto {
 	private String address;
 	private String storeType;
 	private List<String> categories;
-	private Double distance;
+	private List<DiscountDto> discounts = new ArrayList<DiscountDto>();
+	//private Double distance;
 	
 	public StoreDto(){};
 	public StoreDto(StoreEntity storeEntity){
@@ -53,17 +55,23 @@ public class StoreDto {
 	public void setCategories(List<String> categories) {
 		this.categories = categories;
 	}
-	public Double getDistance() {
+	/*public Double getDistance() {
 		return distance;
 	}
 	public void setDistance(Double distance) {
 		this.distance = distance;
-	}
+	}*/
 	public String getStoreType() {
 		return storeType;
 	}
 	public void setStoreType(String storeType) {
 		this.storeType = storeType;
+	}
+	public List<DiscountDto> getDiscounts() {
+		return discounts;
+	}
+	public void addDiscounts(DiscountDto discount) {
+		this.discounts.add(discount);
 	}
 	
 	

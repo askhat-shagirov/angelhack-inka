@@ -103,8 +103,9 @@ public class StoreController {
     }
     
     @RequestMapping(value = "findNearByStores", method = RequestMethod.POST)
-    public StoreSearchResultDto findNearByStores(@RequestParam String lon, @RequestParam String lat, @RequestParam String itemCat, @RequestParam String radius){
-    	String[] itemCats = itemCat.split(",");
+    public StoreSearchResultDto findNearByStores(@RequestParam String lon, @RequestParam String lat, @RequestParam String[] itemCats, 
+    		@RequestParam String radius, @RequestParam String name){
+    	//String[] itemCats = itemCat.split(",");
     	List<ItemCategory> itemCatList = new ArrayList<ItemCategory>();
     	ItemCategory currItemCategory = null;
     	for(String itemCatItem : itemCats){
@@ -113,11 +114,11 @@ public class StoreController {
     	}
     	
     	if(itemCatList.isEmpty()){
-    		System.out.println("Could not find valid item cats : " + itemCat);
+    		System.out.println("Could not find valid item cats : " + itemCats);
     		return null;
     	}
     	StoreSearchResultDto searchResultDto = new StoreSearchResultDto();
-    	searchResultDto.addStores(storeService.findNearByStores(Double.valueOf(lon), Double.valueOf(lat), itemCatList, Double.valueOf(radius)));
+    	searchResultDto.addStores(storeService.findNearByStores(Double.valueOf(lon), Double.valueOf(lat), itemCatList, Double.valueOf(radius), name));
     	//List<StoreEntity> stores = storeService.findNearByStores(storeSearchDto.getLon(), storeSearchDto.getLat(), storeSearchDto.getItemCat(), storeSearchDto.getRadius());
     	//return convert(stores);
     	return searchResultDto;

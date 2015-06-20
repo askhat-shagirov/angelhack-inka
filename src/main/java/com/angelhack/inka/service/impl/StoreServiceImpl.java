@@ -14,6 +14,7 @@ import com.angelhack.inka.dto.StoreSearchResultDto;
 import com.angelhack.inka.entity.ItemCategoryEntity;
 import com.angelhack.inka.entity.StoreEntity;
 import com.angelhack.inka.repository.StoreRepository;
+import com.angelhack.inka.service.DiscountService;
 import com.angelhack.inka.service.StoreService;
 import com.angelhack.inka.service.google.GooglePlaceService;
 import com.angelhack.inka.util.GeoUtil;
@@ -28,6 +29,9 @@ public class StoreServiceImpl implements StoreService {
     
     @Autowired
     private GooglePlaceService googlePlaceService;
+    
+    @Autowired
+    DiscountService discountService;
 
     @Override
     public List<StoreEntity> getAll() {
@@ -40,7 +44,7 @@ public class StoreServiceImpl implements StoreService {
     }
     
     @Override
-    public List<StoreDto> findNearByStores(double longitude, double latitude, List<ItemCategory> storeTypes, double radius){
+    public List<StoreDto> findNearByStores(double longitude, double latitude, List<ItemCategory> storeTypes, double radius, String itemName){
     	List<StoreEntity> stores = storeRepository.findByStoreTypes(storeTypes);
     	System.out.println(stores.size()+" find stores");
     	List<StoreDto> result = new ArrayList<StoreDto>();
@@ -49,7 +53,7 @@ public class StoreServiceImpl implements StoreService {
     	return result;
     }
     
-    private List<StoreDto> filterStoresByVicinity(double longitude, double latitude, double radius, List<StoreEntity> stores){
+    private List<StoreDto> filterStoresByVicinity(double longitude, double latitude, double radius, List<StoreEntity> stores, String itemName){
     	List<StoreDto> filteredStores = new ArrayList<StoreDto>();
     	double currDist = 0;
     	StoreDto currStoreDTO = null;
@@ -57,7 +61,7 @@ public class StoreServiceImpl implements StoreService {
     		currDist = GeoUtil.getDistance(latitude, longitude, store.getLatitude(), store.getLongitude());
     		if(currDist <= radius){
     			currStoreDTO = new StoreDto(store);
-    			currStoreDTO.setDistance(currDist);
+    			//currStoreDTO.setDistance(currDist);
     			filteredStores.add(currStoreDTO);
     		}
     	}
