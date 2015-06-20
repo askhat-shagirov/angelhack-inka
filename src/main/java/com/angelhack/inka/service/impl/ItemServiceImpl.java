@@ -38,4 +38,9 @@ public class ItemServiceImpl implements ItemService {
         return user.getItems();
     }
 
+    @Override
+    public void deleteItem(Long itemId) {
+        itemRepository.delete(itemId);
+    }
+
 }
