@@ -1,5 +1,7 @@
 package com.angelhack.inka.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -14,6 +16,7 @@ public class WishlistEntity {
 
     private String name;
 
+    @JsonIgnore
     @ManyToOne
     private UserEntity user;
 

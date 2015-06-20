@@ -1,5 +1,7 @@
 package com.angelhack.inka.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
@@ -13,6 +15,8 @@ public class ItemEntity {
     @Id
     private Long id;
     private String name;
+
+    @JsonIgnore
     @ManyToOne
     private WishlistEntity wishlist;
 
