@@ -1,6 +1,9 @@
 package com.angelhack.inka.entity;
 
+import com.angelhack.inka.common.ItemCategory;
+
 import javax.persistence.*;
+import java.util.List;
 
 /**
  * Created by Askhat_Shagirov on 20-Jun-15.
@@ -12,13 +15,16 @@ public class SellerEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(unique=true)
+    @Column(unique = true)
     private String email;
 
     //TODO: add encryption
     private String password;
 
     private String fullname;
+
+    @ElementCollection(targetClass = ItemCategory.class, fetch = FetchType.EAGER)
+    private List<ItemCategory> categories;
 
     public Long getId() {
         return id;
@@ -50,5 +56,13 @@ public class SellerEntity {
 
     public void setFullname(String fullname) {
         this.fullname = fullname;
+    }
+
+    public List<ItemCategory> getCategories() {
+        return categories;
+    }
+
+    public void setCategories(List<ItemCategory> categories) {
+        this.categories = categories;
     }
 }

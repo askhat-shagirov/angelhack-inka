@@ -41,6 +41,7 @@ public class RegistrationController {
         seller.setEmail(user.getEmail());
         seller.setPassword(user.getPassword());
         seller.setFullname(user.getName());
+        seller.setCategories(user.getCategories());
         return seller;
     }
 
