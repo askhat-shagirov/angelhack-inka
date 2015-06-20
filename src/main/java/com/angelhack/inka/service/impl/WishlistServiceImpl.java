@@ -33,7 +33,9 @@ public class WishlistServiceImpl implements WishlistService {
     @Override
     public void createWishlist(Long currentUserId, WishlistEntity wishlist) {
         UserEntity user = userRepository.findOne(currentUserId);
+        wishlistRepository.saveAndFlush(wishlist);
         user.getWishlists().add(wishlist);
+        wishlist.setUser(user);
     }
 
     @Override
@@ -48,7 +50,9 @@ public class WishlistServiceImpl implements WishlistService {
             throw new ForbiddenException();
         }
 
+        itemRepository.saveAndFlush(item);
         wishlist.getItems().add(item);
+        item.setWishlist(wishlist);
     }
 
     @Override

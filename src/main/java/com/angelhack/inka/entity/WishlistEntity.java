@@ -12,12 +12,14 @@ import java.util.List;
 public class WishlistEntity {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String name;
 
     @JsonIgnore
     @ManyToOne
+    @JoinColumn(name = "USER_ID")
     private UserEntity user;
 
     @OneToMany(fetch = FetchType.EAGER)

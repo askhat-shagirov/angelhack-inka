@@ -49,5 +49,4 @@ public class WishListController {
         wishlistService.removeItem(currentUserId, itemId);
     }
 
-
 }
