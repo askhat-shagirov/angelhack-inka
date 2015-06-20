@@ -3,10 +3,7 @@ package com.angelhack.inka.controller;
 import com.angelhack.inka.entity.ItemEntity;
 import com.angelhack.inka.service.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -27,11 +24,16 @@ public class ItemController {
         return itemService.getItems(userId);
     }
 
-    @RequestMapping(method = RequestMethod.GET)
+    @RequestMapping(method = RequestMethod.POST)
     public void addItem(@RequestBody ItemEntity item) {
         //TODO get userId
         long userId = 1L;
         itemService.addItem(userId, item);
+    }
+
+    @RequestMapping(value = "/{itemId}")
+    public void deleteItem(@PathVariable Long itemId) {
+        itemService.deleteItem(itemId);
     }
 
 

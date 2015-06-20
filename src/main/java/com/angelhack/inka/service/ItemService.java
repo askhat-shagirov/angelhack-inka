@@ -13,4 +13,5 @@ public interface ItemService {
 
     List<ItemEntity> getItems(long userId);
 
+    void deleteItem(Long itemId);
 }
