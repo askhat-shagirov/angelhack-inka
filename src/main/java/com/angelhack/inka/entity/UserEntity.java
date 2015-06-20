@@ -16,7 +16,7 @@ public class UserEntity {
     private Long id;
 
     @OneToMany(fetch = FetchType.EAGER)
-    private List<ItemEntity> items;
+    private List<WishlistEntity> wishlists;
 
     private String username;
 
@@ -67,11 +67,11 @@ public class UserEntity {
         this.userType = userType;
     }
 
-    public List<ItemEntity> getItems() {
-        return items;
+    public List<WishlistEntity> getWishlists() {
+        return wishlists;
     }
 
-    public void setItems(List<ItemEntity> items) {
-        this.items = items;
+    public void setWishlists(List<WishlistEntity> wishlists) {
+        this.wishlists = wishlists;
     }
 }

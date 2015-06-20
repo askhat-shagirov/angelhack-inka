@@ -14,7 +14,7 @@ public class ItemEntity {
     private Long id;
     private String name;
     @ManyToOne
-    private UserEntity user;
+    private WishlistEntity wishlist;
 
     public Long getId() {
         return id;
@@ -32,11 +32,11 @@ public class ItemEntity {
         this.name = name;
     }
 
-    public UserEntity getUser() {
-        return user;
+    public WishlistEntity getWishlist() {
+        return wishlist;
     }
 
-    public void setUser(UserEntity user) {
-        this.user = user;
+    public void setWishlist(WishlistEntity wishlist) {
+        this.wishlist = wishlist;
     }
 }
