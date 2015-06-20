@@ -1,6 +1,6 @@
 package com.angelhack.inka.service.impl;
 
-import com.angelhack.inka.entity.BroadcastEntity;
+import com.angelhack.inka.entity.BroadCastEntity;
 import com.angelhack.inka.entity.ItemEntity;
 import com.angelhack.inka.repository.BroadcastRepository;
 import com.angelhack.inka.repository.ItemRepository;
@@ -27,11 +27,11 @@ public class BroadcastServiceImpl implements BroadcastService {
     public void broadcastItem(long userId, long itemId, double latitude, double longitude) {
         ItemEntity item = itemRepository.findOne(itemId);
 
-        BroadcastEntity broadcastEntity = new BroadcastEntity();
-        broadcastEntity.setItem(item);
-        broadcastEntity.setLatitude(latitude);
-        broadcastEntity.setLongitude(longitude);
+        BroadCastEntity broadCastEntity = new BroadCastEntity();
+        broadCastEntity.setItem(item);
+        broadCastEntity.setLatitude(latitude);
+        broadCastEntity.setLongitude(longitude);
 
-        broadcastRepository.save(broadcastEntity);
+        broadcastRepository.save(broadCastEntity);
     }
 }
