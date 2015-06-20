@@ -44,6 +44,10 @@
         <constructor-arg value="-web,-webAllowOthers,-webPort,8082"/>
     </bean>
 
+    <bean id="googlePlaces" class="se.walkercrou.places.GooglePlaces">
+        <constructor-arg type="java.lang.String" value="AIzaSyDvq5ABbWPBNHiPa1o_7rWfG96ilJvwUF4"/>
+    </bean>
+
     <tx:annotation-driven/>
     <jpa:repositories base-package="com.angelhack.inka.repository"/>
 
