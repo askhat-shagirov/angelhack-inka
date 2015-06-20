@@ -5,12 +5,14 @@ import com.angelhack.inka.entity.UserEntity;
 import com.angelhack.inka.repository.UserRepository;
 import com.angelhack.inka.service.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 /**
  * Created by Mikhail_Voloshin on 6/20/2015.
  */
+@Service
 public class ItemServiceImpl implements ItemService {
 
     @Autowired
@@ -19,13 +21,14 @@ public class ItemServiceImpl implements ItemService {
     @Override
     public void addItem(long userId, ItemEntity item) {
         UserEntity user = userRepository.findOne(userId);
-        user.getItems().add(item);
+//        user.getItems().add(item);
     }
 
     @Override
     public List<ItemEntity> getItems(long userId) {
         UserEntity user = userRepository.findOne(userId);
-        return user.getItems();
+        return null;
+//        return user.getItems();
     }
 
 }

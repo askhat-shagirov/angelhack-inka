@@ -27,7 +27,7 @@ public class ItemController {
         return itemService.getItems(userId);
     }
 
-    @RequestMapping(method = RequestMethod.GET)
+    @RequestMapping(method = RequestMethod.POST)
     public void addItem(@RequestBody ItemEntity item) {
         //TODO get userId
         long userId = 1L;

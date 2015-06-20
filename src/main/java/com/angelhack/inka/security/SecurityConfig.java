@@ -18,8 +18,11 @@ import org.springframework.security.web.authentication.AuthenticationSuccessHand
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
+    private UserDetailsServiceImpl userDetailsService;
+
+    @Autowired
     public void configureAuthBuilder(AuthenticationManagerBuilder builder) throws Exception {
-        builder.inMemoryAuthentication().withUser("user").password("123").roles("USER");
+        builder.userDetailsService(userDetailsService);
     }
 
     @Override
@@ -29,6 +32,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .httpBasic()
                 .and()
                 .authorizeRequests()
-                .antMatchers("/**").authenticated();
+                .antMatchers("/registration/user").permitAll()
+                .antMatchers("/**").hasRole(UserAuthority.USER);
     }
 }

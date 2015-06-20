@@ -1,10 +1,7 @@
 package com.angelhack.inka.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.List;
-import java.util.Set;
 
 /**
  * Created by Mikhail_Voloshin on 6/20/2015.
@@ -13,9 +10,18 @@ import java.util.Set;
 public class UserEntity {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @OneToMany
+
+    @OneToMany(fetch = FetchType.EAGER)
     private List<ItemEntity> items;
+
+    private String username;
+
+    //TODO: add encryption
+    private String password;
+
+    private String fullname;
 
     public Long getId() {
         return id;
@@ -23,6 +29,30 @@ public class UserEntity {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getFullname() {
+        return fullname;
+    }
+
+    public void setFullname(String fullname) {
+        this.fullname = fullname;
     }
 
     public List<ItemEntity> getItems() {
