@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.angelhack.inka.common.ItemCategory;
 import com.angelhack.inka.dto.StoreDto;
 import com.angelhack.inka.dto.StoreSearchDto;
 import com.angelhack.inka.dto.StoreSearchResultDto;
@@ -35,10 +36,10 @@ public class StoreController {
     public void initTest() {
     	//List<ItemCategoryEntity> itemcats = createItemcategories(new String[]{"electronics", "cloth","grocery"});
     	
-    	createStore("Wallmart", 226789.04, 24580.9, "Nanshan,  Houhai", "grocery_or_supermarket");
-    	createStore("FoodMarket", 226785.04, 24580.9, "Nanshan,  Houhai", "grocery_or_supermarket");
-    	createStore("Sunning", 226783.04, 24580.9, "Nanshan,  Houhai", "electronics_store");
-    	createStore("CoastalCity", 226781.04, 24580.9, "Nanshan,  Houhai", "shopping_mall");
+    	createStore("Wallmart", 114.13534899999999, 22.2834106, "Wanchai, Hong Kong", "grocery_or_supermarket");
+    	createStore("FoodMarket", 114.13534899999999, 22.2834106, "Wanchai, Hong Kong", "grocery_or_supermarket");
+    	createStore("Sunning", 114.13534899999999, 22.2834106, "Wanchai, Hong Kong", "electronics_store");
+    	createStore("CoastalCity", 114.13534899999999, 22.2834106, "Wanchai, Hong Kong", "shopping_mall");
     	System.out.println("Test init complete");
     }
     
@@ -60,7 +61,7 @@ public class StoreController {
     	se.setLatitude(lat);
     	se.setLongitude(lon);
     	se.setAddress(address);
-    	se.setStoreType(storeType);
+    	se.setStoreType(ItemCategory.getEnum(storeType));
     	//se.setSellCategories(createItemcategories(categs));
     	storeService.save(se);
     	return se;
@@ -103,9 +104,23 @@ public class StoreController {
     
     @RequestMapping(value = "findNearByStores", method = RequestMethod.POST)
     public StoreSearchResultDto findNearByStores(@RequestParam String lon, @RequestParam String lat, @RequestParam String itemCat, @RequestParam String radius){
-    	List<StoreEntity> stores = storeService.findNearByStores(Double.valueOf(lon), Double.valueOf(lat), itemCat, Double.valueOf(radius));
+    	String[] itemCats = itemCat.split(",");
+    	List<ItemCategory> itemCatList = new ArrayList<ItemCategory>();
+    	ItemCategory currItemCategory = null;
+    	for(String itemCatItem : itemCats){
+    		currItemCategory = ItemCategory.getEnum(itemCatItem);
+    		if(!ItemCategory.unknown.equals(currItemCategory)) itemCatList.add(currItemCategory);
+    	}
+    	
+    	if(itemCatList.isEmpty()){
+    		System.out.println("Could not find valid item cats : " + itemCat);
+    		return null;
+    	}
+    	StoreSearchResultDto searchResultDto = new StoreSearchResultDto();
+    	searchResultDto.addStores(storeService.findNearByStores(Double.valueOf(lon), Double.valueOf(lat), itemCatList, Double.valueOf(radius)));
     	//List<StoreEntity> stores = storeService.findNearByStores(storeSearchDto.getLon(), storeSearchDto.getLat(), storeSearchDto.getItemCat(), storeSearchDto.getRadius());
-    	return convert(stores);
+    	//return convert(stores);
+    	return searchResultDto;
     }
     
     public StoreSearchResultDto convert(List<StoreEntity> stores){

@@ -19,7 +19,7 @@ public class StoreDto {
 		name = storeEntity.getName();
 		lon = storeEntity.getLongitude();
 		lat = storeEntity.getLatitude();
-		storeType = storeEntity.getStoreType();
+		storeType = storeEntity.getStoreType().name();
 		address = storeEntity.getAddress();
 	}
 	

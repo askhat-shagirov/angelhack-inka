@@ -13,5 +13,17 @@ public enum ItemCategory {
     electronics_store,
     furniture_store,
     hardware_store,
+    grocery_or_supermarket,
+    shopping_mall,
+    unknown;
+    
+    public static ItemCategory getEnum(String val){
+    	for(ItemCategory item : ItemCategory.values()){
+    		if(item.name().equals(val)){
+    			return item;
+    		}
+    	}
+    	return unknown;
+    }
 
 }

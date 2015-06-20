@@ -1,5 +1,7 @@
 package com.angelhack.inka.service;
 
+import com.angelhack.inka.common.ItemCategory;
+import com.angelhack.inka.dto.StoreDto;
 import com.angelhack.inka.entity.StoreEntity;
 
 import java.util.List;
@@ -11,5 +13,5 @@ public interface StoreService {
 
     StoreEntity save(StoreEntity test);
     
-    List<StoreEntity> findNearByStores(double longitude, double latitude, String itemCat, double vicinityLimit);
+    List<StoreDto> findNearByStores(double longitude, double latitude,  List<ItemCategory> storeTypes, double radius);
 }

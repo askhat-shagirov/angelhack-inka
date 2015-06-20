@@ -9,6 +9,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 
+import com.angelhack.inka.common.ItemCategory;
+
 
 @Entity
 public class StoreEntity {
@@ -19,7 +21,7 @@ public class StoreEntity {
     private Double longitude;
     private Double latitude;
     private String address;
-    private String storeType;
+    private ItemCategory storeType;
     
    /* @ManyToMany
     @JoinTable(name="Store_SellCategory",
@@ -76,11 +78,11 @@ public class StoreEntity {
 		this.sellCategories = sellCategories;
 	}*/
 
-	public String getStoreType() {
+	public ItemCategory getStoreType() {
 		return storeType;
 	}
 
-	public void setStoreType(String storeType) {
+	public void setStoreType(ItemCategory storeType) {
 		this.storeType = storeType;
 	}
     

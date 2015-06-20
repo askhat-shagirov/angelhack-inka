@@ -11,7 +11,7 @@ public class GeoUtil {
 				* Math.cos(decimalDegreeToRadian(theta));
 		dist = Math.acos(dist);
 		dist = radianToDecimalDegree(dist);
-		dist = dist * 60 * 1.1515;
+		dist = dist * 60 * 1.1515 * 0.001609344 ;
 		return dist;
 	}
 
