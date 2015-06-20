@@ -1,5 +1,6 @@
 package com.angelhack.inka.security;
 
+import com.angelhack.inka.entity.SellerEntity;
 import com.angelhack.inka.entity.UserEntity;
 
 /**
@@ -10,4 +11,8 @@ public interface SecurityService {
     Long getCurrentUserId();
 
     UserEntity getCurrentUser();
+
+    Long getCurrentSellerId();
+
+    SellerEntity getCurrentSeller();
 }
