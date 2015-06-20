@@ -18,6 +18,7 @@ public class UserEntity {
     @OneToMany(fetch = FetchType.EAGER)
     private List<WishlistEntity> wishlists;
 
+    @Column(unique=true)
     private String email;
 
     //TODO: add encryption

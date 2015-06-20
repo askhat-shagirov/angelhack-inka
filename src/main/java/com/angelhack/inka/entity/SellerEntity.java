@@ -1,9 +1,6 @@
 package com.angelhack.inka.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 /**
  * Created by Askhat_Shagirov on 20-Jun-15.
@@ -15,6 +12,7 @@ public class SellerEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(unique=true)
     private String email;
 
     //TODO: add encryption
