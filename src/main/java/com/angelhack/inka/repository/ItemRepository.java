@@ -15,6 +15,8 @@ import java.util.List;
 @Repository
 public interface ItemRepository extends JpaRepository<ItemEntity, Long> {
 
+    List<ItemEntity> findDistinctByCategoriesInAndBroadcastEquals(List<ItemCategory> categories, boolean b);
+
     @Query("select distinct item from ItemEntity item join item.categories category where category in :categories and item.broadcast = true")
     List<ItemEntity> findWhereCategoryInAndBroadcastEnabled(
             @Param("categories")
