@@ -18,6 +18,9 @@ public class ItemEntity {
     private String name;
     private String description;
 
+    private Boolean gpsNotification;
+    private Boolean broadcast;
+
     @ElementCollection(targetClass = ItemCategory.class, fetch = FetchType.EAGER)
     private List<ItemCategory> categories;
 
@@ -64,5 +67,21 @@ public class ItemEntity {
 
     public void setCategories(List<ItemCategory> categories) {
         this.categories = categories;
+    }
+
+    public Boolean getGpsNotification() {
+        return gpsNotification;
+    }
+
+    public void setGpsNotification(Boolean gpsNotification) {
+        this.gpsNotification = gpsNotification;
+    }
+
+    public Boolean getBroadcast() {
+        return broadcast;
+    }
+
+    public void setBroadcast(Boolean broadcast) {
+        this.broadcast = broadcast;
     }
 }
