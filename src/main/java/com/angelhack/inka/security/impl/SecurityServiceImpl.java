@@ -20,13 +20,13 @@ public class SecurityServiceImpl implements SecurityService {
     @Override
     public Long getCurrentUserId() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        UserEntity userEntity = userRepository.findByUsername(authentication.getName());
+        UserEntity userEntity = userRepository.findByEmail(authentication.getName());
         return userEntity.getId();
     }
 
     @Override
     public UserEntity getCurrentUser() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        return userRepository.findByUsername(authentication.getName());
+        return userRepository.findByEmail(authentication.getName());
     }
 }

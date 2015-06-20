@@ -7,7 +7,7 @@ import org.springframework.security.core.GrantedAuthority;
  */
 public class BuyerAuthority implements GrantedAuthority {
 
-    public static final String BUYER = "SELLER";
+    public static final String BUYER = "BUYER";
 
     @Override
     public String getAuthority() {

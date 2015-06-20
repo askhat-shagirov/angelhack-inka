@@ -1,22 +1,19 @@
 package com.angelhack.inka.entity;
 
-import com.angelhack.inka.common.UserType;
-
-import javax.persistence.*;
-import java.util.List;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
 /**
- * Created by Mikhail_Voloshin on 6/20/2015.
+ * Created by Askhat_Shagirov on 20-Jun-15.
  */
 @Entity
-public class UserEntity {
+public class SellerEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    @OneToMany(fetch = FetchType.EAGER)
-    private List<ItemEntity> items;
 
     private String email;
 
@@ -33,12 +30,12 @@ public class UserEntity {
         this.id = id;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
     public String getEmail() {
         return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getPassword() {
@@ -55,13 +52,5 @@ public class UserEntity {
 
     public void setFullname(String fullname) {
         this.fullname = fullname;
-    }
-
-    public List<ItemEntity> getItems() {
-        return items;
-    }
-
-    public void setItems(List<ItemEntity> items) {
-        this.items = items;
     }
 }
