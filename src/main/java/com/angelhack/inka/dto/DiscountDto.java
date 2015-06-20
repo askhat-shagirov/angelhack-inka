@@ -1,10 +1,20 @@
 package com.angelhack.inka.dto;
 
+import com.angelhack.inka.entity.DiscountEntity;
+
 public class DiscountDto {
 
 	private String itemName;
 	private double actualPrice;
 	private double discountPrice;
+	
+	public DiscountDto(){}
+	
+	public DiscountDto(DiscountEntity disc){
+		itemName = disc.getName();
+		actualPrice = disc.getPrice();
+		discountPrice = disc.getDiscountedPrice();		
+	}
 	
 	public String getItemName() {
 		return itemName;
