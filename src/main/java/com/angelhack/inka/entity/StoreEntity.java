@@ -19,12 +19,13 @@ public class StoreEntity {
     private Double longitude;
     private Double latitude;
     private String address;
+    private String storeType;
     
-    @ManyToMany
+   /* @ManyToMany
     @JoinTable(name="Store_SellCategory",
     	      joinColumns={@JoinColumn(name="store_Id", referencedColumnName="ID")},
     	      inverseJoinColumns={@JoinColumn(name="category_Id", referencedColumnName="ID")})
-    private List<ItemCategoryEntity> sellCategories;
+    private List<ItemCategoryEntity> sellCategories;*/
     
 
     public Long getId() {
@@ -65,6 +66,22 @@ public class StoreEntity {
 
 	public void setAddress(String address) {
 		this.address = address;
+	}
+
+	/*public List<ItemCategoryEntity> getSellCategories() {
+		return sellCategories;
+	}
+
+	public void setSellCategories(List<ItemCategoryEntity> sellCategories) {
+		this.sellCategories = sellCategories;
+	}*/
+
+	public String getStoreType() {
+		return storeType;
+	}
+
+	public void setStoreType(String storeType) {
+		this.storeType = storeType;
 	}
     
     

@@ -13,6 +13,7 @@ import com.angelhack.inka.entity.StoreEntity;
 import com.angelhack.inka.repository.StoreRepository;
 import com.angelhack.inka.service.StoreService;
 import com.angelhack.inka.util.GeoUtil;
+import com.angelhack.inka.util.ItemcategoryStoreTypeMap;
 
 @Service
 @Transactional
@@ -31,8 +32,9 @@ public class StoreServiceImpl implements StoreService {
         return storeRepository.save(test);
     }
     
-    public List<StoreEntity> findNearByStores(double longitude, double latitude, ItemCategoryEntity cat, double vicinityLimit){
-    	List<StoreEntity> stores = storeRepository.findBycategory(cat.getName());
+    public List<StoreEntity> findNearByStores(double longitude, double latitude, String itemCat, double vicinityLimit){
+    	List<StoreEntity> stores = storeRepository.findByStoreTypes(ItemcategoryStoreTypeMap.getStoreTypes(itemCat));
+    	System.out.println(stores.size()+" find stores");
     	List<StoreEntity> result = new ArrayList<StoreEntity>();
     	result.addAll(filterStoresByVicinity(longitude, latitude, vicinityLimit, stores));
     	return result;
