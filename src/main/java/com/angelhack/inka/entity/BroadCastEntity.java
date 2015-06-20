@@ -1,7 +1,9 @@
 package com.angelhack.inka.entity;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 /**
  * Created by Mikhail_Voloshin on 6/20/2015.
@@ -12,6 +14,7 @@ public class BroadCastEntity {
 
     @Id
     private Long id;
+    @OneToOne
     private ItemEntity item;
 
     private Double latitude;
