@@ -40,7 +40,8 @@ public class WishlistServiceImpl implements WishlistService {
 
     @Override
     public List<WishlistEntity> getWishlists(Long currentUserId) {
-        return userRepository.findOne(currentUserId).getWishlists();
+        UserEntity user = userRepository.findOne(currentUserId);
+        return user.getWishlists();
     }
 
     @Override

@@ -1,11 +1,7 @@
 package com.angelhack.inka.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 import com.angelhack.inka.common.ItemCategory;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import java.util.List;
@@ -22,14 +18,12 @@ public class ItemEntity {
     private String name;
     private String description;
 
-    @ElementCollection(targetClass = ItemCategory.class)
-    @CollectionTable(name = "ITEM_CATEGORY",
-            joinColumns = @JoinColumn(name = "ITEM_ID"))
-    @Column(name = "CATEGORY_ID")
-    private List<ItemCategory> category;
+    @ElementCollection(targetClass = ItemCategory.class, fetch = FetchType.EAGER)
+    private List<ItemCategory> categories;
 
     @JsonIgnore
     @ManyToOne
+    @JoinColumn(name = "WISHLIST_ID")
     private WishlistEntity wishlist;
 
     public Long getId() {
@@ -64,11 +58,11 @@ public class ItemEntity {
         this.description = description;
     }
 
-    public List<ItemCategory> getCategory() {
-        return category;
+    public List<ItemCategory> getCategories() {
+        return categories;
     }
 
-    public void setCategory(List<ItemCategory> category) {
-        this.category = category;
+    public void setCategories(List<ItemCategory> categories) {
+        this.categories = categories;
     }
 }
