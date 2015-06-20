@@ -48,7 +48,7 @@ public class GooglePlaceServiceImpl implements GooglePlaceService {
 			currStore.setLat(place.getLatitude());
 			currStore.setLon(place.getLongitude());
 			currStore.setAddress(place.getAddress());
-			currStore.setDistance((double)place.getAccuracy());
+			//currStore.setDistance((double)place.getAccuracy());
 			currStore.setStoreType(place.getTypes().toString());
 			
 			stores.add(currStore);

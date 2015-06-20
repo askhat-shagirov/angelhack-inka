@@ -1,10 +1,23 @@
 package com.angelhack.inka.entity;
 
+import java.util.Collection;
+import java.util.List;
+
+import javax.persistence.ElementCollection;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+
 import com.angelhack.inka.common.ItemCategory;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
-import javax.persistence.*;
-import java.util.List;
 
 /**
  * Created by Mikhail_Voloshin on 6/20/2015.
@@ -28,6 +41,10 @@ public class ItemEntity {
     @ManyToOne
     @JoinColumn(name = "WISHLIST_ID")
     private WishlistEntity wishlist;
+
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "item")
+    @Fetch(FetchMode.SUBSELECT)
+    private List<DiscountEntity> discounts;
 
     public Long getId() {
         return id;
@@ -73,6 +90,7 @@ public class ItemEntity {
         return gpsNotification;
     }
 
+
     public void setGpsNotification(Boolean gpsNotification) {
         this.gpsNotification = gpsNotification;
     }
@@ -84,4 +102,14 @@ public class ItemEntity {
     public void setBroadcast(Boolean broadcast) {
         this.broadcast = broadcast;
     }
+
+    public List<DiscountEntity> getDiscounts() {
+        return discounts;
+    }
+
+    public void setDiscounts(List<DiscountEntity> discounts) {
+        this.discounts = discounts;
+    }
+
+
 }
