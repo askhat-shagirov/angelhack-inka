@@ -16,7 +16,7 @@
 
     <bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource">
         <property name="driverClassName" value="org.h2.Driver"/>
-        <property name="url" value="jdbc:h2:~/h2-testdb"/>
+        <property name="url" value="jdbc:h2:~/shoptimizer"/>
         <property name="username" value="sa"/>
         <property name="password" value=""/>
     </bean>
@@ -28,7 +28,7 @@
         </property>
         <property name="jpaProperties">
             <map>
-                <entry key="hibernate.dialect" value="org.hibernate.dialect.PostgreSQL9Dialect"/>
+                <entry key="hibernate.dialect" value="org.hibernate.dialect.H2Dialect"/>
                 <entry key="hibernate.connection.charSet" value="UTF-8"/>
                 <entry key="hibernate.hbm2ddl.auto" value="create"/>
                 <entry key="hibernate.show_sql" value="true"/>
