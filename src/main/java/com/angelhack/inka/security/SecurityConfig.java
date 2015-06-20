@@ -30,6 +30,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .authorizeRequests()
                 .antMatchers("/registration/user").permitAll()
-                .antMatchers("/**").hasAuthority(UserAuthority.USER);
+                .antMatchers("/**").hasAuthority(BuyerAuthority.BUYER);
     }
 }

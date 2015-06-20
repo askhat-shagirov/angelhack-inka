@@ -1,5 +1,7 @@
 package com.angelhack.inka.entity;
 
+import com.angelhack.inka.common.UserType;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -22,6 +24,8 @@ public class UserEntity {
     private String password;
 
     private String fullname;
+
+    private UserType userType;
 
     public Long getId() {
         return id;
@@ -53,6 +57,14 @@ public class UserEntity {
 
     public void setFullname(String fullname) {
         this.fullname = fullname;
+    }
+
+    public UserType getUserType() {
+        return userType;
+    }
+
+    public void setUserType(UserType userType) {
+        this.userType = userType;
     }
 
     public List<ItemEntity> getItems() {

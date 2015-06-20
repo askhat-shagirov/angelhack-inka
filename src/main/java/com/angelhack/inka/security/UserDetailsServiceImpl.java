@@ -1,5 +1,6 @@
 package com.angelhack.inka.security;
 
+import com.angelhack.inka.common.UserType;
 import com.angelhack.inka.entity.UserEntity;
 import com.angelhack.inka.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +26,12 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         UserEntity user = userRepository.findByUsername(username);
         ArrayList<GrantedAuthority> authorities = new ArrayList<>();
-        authorities.add(new UserAuthority());
+
+        if (UserType.BUYER.equals(user.getUserType()))
+            authorities.add(new BuyerAuthority());
+        else if (UserType.SELLER.equals(user.getUserType()))
+            authorities.add(new SellerAuthority());
+
         return new User(user.getUsername(), user.getPassword(), true, true, true, true, authorities);
     }
 
