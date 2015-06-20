@@ -1,10 +1,13 @@
 package com.angelhack.inka.service.impl;
 
 import com.angelhack.inka.entity.TestEntity;
+import com.angelhack.inka.repository.TestRepository;
 import com.angelhack.inka.service.TestService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.List;
 
 /**
  * Created by Askhat_Shagirov on 20-Jun-15.
@@ -13,16 +16,16 @@ import javax.transaction.Transactional;
 @Transactional
 public class TestServiceImpl implements TestService {
 
+    @Autowired
+    private TestRepository testRepository;
+
     @Override
-    public TestEntity getLatest() {
-        TestEntity ent = new TestEntity();
-        ent.setId(123L);
-        ent.setName("Name");
-        return ent;
+    public List<TestEntity> getLatest() {
+        return testRepository.findAll();
     }
 
     @Override
-    public void save(TestEntity test) {
-        System.out.println("Saved!");
+    public TestEntity save(TestEntity test) {
+        return testRepository.save(test);
     }
 }

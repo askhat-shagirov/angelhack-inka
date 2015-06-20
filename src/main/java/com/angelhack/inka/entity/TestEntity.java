@@ -2,6 +2,7 @@ package com.angelhack.inka.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import java.io.Serializable;
 
 /**
  * Created by Askhat_Shagirov on 20-Jun-15.

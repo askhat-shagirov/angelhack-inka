@@ -2,12 +2,14 @@ package com.angelhack.inka.service;
 
 import com.angelhack.inka.entity.TestEntity;
 
+import java.util.List;
+
 /**
  * Created by Askhat_Shagirov on 20-Jun-15.
  */
 public interface TestService {
 
-    TestEntity getLatest();
+    List<TestEntity> getLatest();
 
-    void save(TestEntity test);
+    TestEntity save(TestEntity test);
 }
