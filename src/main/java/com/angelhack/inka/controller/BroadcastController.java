@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
  * Created by Mikhail_Voloshin on 6/20/2015.
  */
 @RestController
-@RequestMapping("api/user/broadcast")
+@RequestMapping(value = "api/user/broadcast")
 public class BroadcastController {
 
     @Autowired
