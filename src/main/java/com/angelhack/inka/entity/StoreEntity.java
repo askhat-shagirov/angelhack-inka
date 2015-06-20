@@ -26,18 +26,9 @@ public class StoreEntity {
     private String address;
     private ItemCategory storeType;
     
-   /* @ManyToMany
-    @JoinTable(name="Store_SellCategory",
-    	      joinColumns={@JoinColumn(name="store_Id", referencedColumnName="ID")},
-    	      inverseJoinColumns={@JoinColumn(name="category_Id", referencedColumnName="ID")})
-    private List<ItemCategoryEntity> sellCategories;*/
-    
-    
     @ManyToOne
     private SellerEntity seller;
-    
 
-    
     public SellerEntity getSeller() {
 		return seller;
 	}

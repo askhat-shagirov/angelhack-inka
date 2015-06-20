@@ -2,6 +2,9 @@ package com.angelhack.inka.entity;
 
 import java.util.Collection;
 import com.angelhack.inka.common.ItemCategory;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -28,6 +31,10 @@ public class SellerEntity {
     
     @ElementCollection(targetClass = ItemCategory.class, fetch = FetchType.EAGER)
     private List<ItemCategory> categories;
+
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "seller")
+    @Fetch(FetchMode.SUBSELECT)
+    private List<DiscountEntity> discounts;
 
     public Long getId() {
         return id;
@@ -79,4 +86,11 @@ public class SellerEntity {
         this.categories = categories;
     }
 
+    public List<DiscountEntity> getDiscounts() {
+        return discounts;
+    }
+
+    public void setDiscounts(List<DiscountEntity> discounts) {
+        this.discounts = discounts;
+    }
 }

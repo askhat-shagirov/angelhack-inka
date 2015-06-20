@@ -31,7 +31,7 @@ public class StoreServiceImpl implements StoreService {
     private GooglePlaceService googlePlaceService;
     
     @Autowired
-    DiscountService discountService;
+    private DiscountService discountService;
 
     @Override
     public List<StoreEntity> getAll() {
@@ -53,7 +53,7 @@ public class StoreServiceImpl implements StoreService {
     	return result;
     }
     
-    private List<StoreDto> filterStoresByVicinity(double longitude, double latitude, double radius, List<StoreEntity> stores, String itemName){
+    private List<StoreDto> filterStoresByVicinity(double longitude, double latitude, double radius, List<StoreEntity> stores){
     	List<StoreDto> filteredStores = new ArrayList<StoreDto>();
     	double currDist = 0;
     	StoreDto currStoreDTO = null;
