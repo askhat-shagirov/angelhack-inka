@@ -1,9 +1,12 @@
 package com.angelhack.inka.controller;
 
 import com.angelhack.inka.common.UserType;
+import com.angelhack.inka.dto.UserDetailsDto;
 import com.angelhack.inka.dto.UserDto;
 import com.angelhack.inka.entity.SellerEntity;
 import com.angelhack.inka.entity.UserEntity;
+import com.angelhack.inka.exception.UnauthorizedException;
+import com.angelhack.inka.security.SecurityService;
 import com.angelhack.inka.service.SellerService;
 import com.angelhack.inka.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +28,9 @@ public class RegistrationController {
     @Autowired
     private SellerService sellerService;
 
+    @Autowired
+    private SecurityService securityService;
+
     @RequestMapping(value = "user", method = RequestMethod.POST)
     public void registerUser(@RequestBody UserDto user) {
 
@@ -35,6 +41,27 @@ public class RegistrationController {
         else
             throw new RuntimeException("Invalid user type");
     }
+
+    @RequestMapping(value = "user", method = RequestMethod.GET)
+    public UserDetailsDto getCurrentUserType() throws UnauthorizedException {
+        UserEntity user = securityService.getCurrentUser();
+        UserDetailsDto dto = new UserDetailsDto();
+        if (user != null) {
+            dto.setId(user.getId());
+            dto.setUserType(UserType.BUYER);
+            return dto;
+        }
+
+        SellerEntity sellerEntity = securityService.getCurrentSeller();
+        if (sellerEntity != null) {
+            dto.setId(sellerEntity.getId());
+            dto.setUserType(UserType.SELLER);
+            return dto;
+        }
+
+        throw new UnauthorizedException();
+    }
+
 
     private SellerEntity createSellerEntity(UserDto user) {
         SellerEntity seller = new SellerEntity();
