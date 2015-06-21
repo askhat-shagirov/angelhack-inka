@@ -32,6 +32,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .httpBasic()
                 .and()
                 .authorizeRequests()
-                .antMatchers("/**").permitAll();
+                .antMatchers("/registration/user").permitAll()
+                .antMatchers("/api/user/**").hasAuthority(BuyerAuthority.BUYER)
+                .antMatchers("/api/seller/**").hasAuthority(SellerAuthority.SELLER);
     }
 }
