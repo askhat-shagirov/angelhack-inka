@@ -1,41 +1,50 @@
 package com.angelhack.inka.dto;
 
-import com.angelhack.inka.entity.DiscountEntity;
-
 public class DiscountDto {
 
-	private String itemName;
-	private double actualPrice;
-	private double discountPrice;
-	
-	public DiscountDto(){}
-	
-	public DiscountDto(DiscountEntity disc){
-		itemName = disc.getName();
-		actualPrice = disc.getPrice();
-		discountPrice = disc.getDiscountedPrice();		
+	private Long id;
+	private String name;
+	private Double price;
+	private Double discountedPrice;
+	private Long itemId;
+
+	public Long getId() {
+		return id;
 	}
-	
-	public String getItemName() {
-		return itemName;
+
+	public void setId(Long id) {
+		this.id = id;
 	}
-	public void setItemName(String itemName) {
-		this.itemName = itemName;
+
+	public String getName() {
+		return name;
 	}
-	public double getActualPrice() {
-		return actualPrice;
+
+	public void setName(String name) {
+		this.name = name;
 	}
-	public void setActualPrice(double actualPrice) {
-		this.actualPrice = actualPrice;
+
+	public Double getPrice() {
+		return price;
 	}
-	public double getDiscountPrice() {
-		return discountPrice;
+
+	public void setPrice(Double price) {
+		this.price = price;
 	}
-	public void setDiscountPrice(double discountPrice) {
-		this.discountPrice = discountPrice;
+
+	public Double getDiscountedPrice() {
+		return discountedPrice;
 	}
-	
-	
-	
-	
+
+	public void setDiscountedPrice(Double discountedPrice) {
+		this.discountedPrice = discountedPrice;
+	}
+
+	public Long getItemId() {
+		return itemId;
+	}
+
+	public void setItemId(Long itemId) {
+		this.itemId = itemId;
+	}
 }

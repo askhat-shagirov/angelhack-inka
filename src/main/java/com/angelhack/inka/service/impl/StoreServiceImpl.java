@@ -47,7 +47,7 @@ public class StoreServiceImpl implements StoreService {
     private GooglePlaceService googlePlaceService;
     
     @Autowired
-    DiscountService discountService;
+    private DiscountService discountService;
 
     @Override
     public List<StoreEntity> getAll() {
@@ -107,16 +107,24 @@ public class StoreServiceImpl implements StoreService {
     		currStoreResultDto = new StoreDto(store);
     		currDiscount = discMap.get(store.getSeller().getId());
     		
-    		if(currDiscount != null) currStoreResultDto.addDiscounts(new DiscountDto(currDiscount));
+    		if(currDiscount != null) currStoreResultDto.addDiscounts(getDiscountDto(currDiscount));
     		storeSearchResult.add(currStoreResultDto);
     	}
     	
     	storeSearchResult.addAll(googlePlaceService.getStoresNearby(lat, lon, radius, item.getCategories()));
     	return storeSearchResult;
     }
-    
-    
-    private List<StoreEntity> getNearestStores(ItemEntity item, double lon, double lat, double radius){
+
+	private DiscountDto getDiscountDto(DiscountEntity currDiscount) {
+		DiscountDto dto = new DiscountDto();
+		dto.setPrice(currDiscount.getPrice());
+		dto.setDiscountedPrice(currDiscount.getDiscountedPrice());
+		dto.setName(currDiscount.getName());
+		return dto;
+	}
+
+
+	private List<StoreEntity> getNearestStores(ItemEntity item, double lon, double lat, double radius){
     	List<SellerEntity> sellers = sellerRepository.findByCategoriesIn(item.getCategories());
     	List<StoreEntity> stores = new ArrayList<StoreEntity>();    	
     	for(SellerEntity seller : sellers){

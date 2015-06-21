@@ -15,6 +15,8 @@ import javax.persistence.OneToMany;
 
 import com.angelhack.inka.common.ItemCategory;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 
 /**
@@ -39,9 +41,10 @@ public class ItemEntity {
     @ManyToOne
     @JoinColumn(name = "WISHLIST_ID")
     private WishlistEntity wishlist;
-    
-    @OneToMany(mappedBy="item")
-    private Collection<DiscountEntity> discounts;
+
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "item")
+    @Fetch(FetchMode.SUBSELECT)
+    private List<DiscountEntity> discounts;
 
     public Long getId() {
         return id;
@@ -100,13 +103,13 @@ public class ItemEntity {
         this.broadcast = broadcast;
     }
 
-	public Collection<DiscountEntity> getDiscounts() {
-		return discounts;
-	}
+    public List<DiscountEntity> getDiscounts() {
+        return discounts;
+    }
 
-	public void setDiscounts(Collection<DiscountEntity> discounts) {
-		this.discounts = discounts;
-	}
-    
-    
+    public void setDiscounts(List<DiscountEntity> discounts) {
+        this.discounts = discounts;
+    }
+
+
 }

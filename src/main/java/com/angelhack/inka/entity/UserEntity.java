@@ -2,8 +2,10 @@ package com.angelhack.inka.entity;
 
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
+import org.springframework.util.CollectionUtils;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -20,7 +22,7 @@ public class UserEntity {
     @Fetch(FetchMode.SUBSELECT)
     private List<WishlistEntity> wishlists;
 
-    @Column(unique=true)
+    @Column(unique = true)
     private String email;
 
     //TODO: add encryption
@@ -66,5 +68,20 @@ public class UserEntity {
 
     public void setWishlists(List<WishlistEntity> wishlists) {
         this.wishlists = wishlists;
+    }
+
+    @Transient
+    public List<ItemEntity> getItems() {
+        List<ItemEntity> result = new ArrayList<>();
+
+        if (CollectionUtils.isEmpty(getWishlists())) return result;
+
+        for (WishlistEntity wishlist : getWishlists()) {
+            if (CollectionUtils.isEmpty(wishlist.getItems())) continue;
+
+            result.addAll(wishlist.getItems());
+        }
+
+        return result;
     }
 }

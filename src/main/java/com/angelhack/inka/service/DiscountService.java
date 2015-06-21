@@ -2,17 +2,17 @@ package com.angelhack.inka.service;
 
 import java.util.List;
 
+import com.angelhack.inka.dto.DiscountDto;
 import com.angelhack.inka.entity.DiscountEntity;
 
 
 public interface DiscountService {
 
-    List<DiscountEntity> getAll();
+    List<DiscountDto> getSellerDiscounts(Long sellerId);
 
-    List<DiscountEntity> save(List<DiscountEntity> discounts);
-    
-    DiscountEntity save(DiscountEntity discount);
-    
-    List<DiscountEntity>  findDiscountsByItemId(Long itemId);
-    
+    DiscountEntity createDiscount(Long sellerId, DiscountDto discount);
+
+    List<DiscountEntity> findDiscountsByItemId(Long itemId);
+
+    List<DiscountDto> getUserDiscounts(Long userId);
 }
