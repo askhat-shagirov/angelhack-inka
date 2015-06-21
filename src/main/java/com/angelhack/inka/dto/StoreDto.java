@@ -12,7 +12,7 @@ public class StoreDto {
 	private Double lat;
 	private String address;
 	private String storeType;
-	private List<String> categories;
+	//private List<String> categories;
 	private List<DiscountDto> discounts = new ArrayList<DiscountDto>();
 	//private Double distance;
 	
@@ -49,12 +49,12 @@ public class StoreDto {
 	public void setAddress(String address) {
 		this.address = address;
 	}
-	public List<String> getCategories() {
+	/*public List<String> getCategories() {
 		return categories;
 	}
 	public void setCategories(List<String> categories) {
 		this.categories = categories;
-	}
+	}*/
 	/*public Double getDistance() {
 		return distance;
 	}
