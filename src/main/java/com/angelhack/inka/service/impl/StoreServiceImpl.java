@@ -61,14 +61,12 @@ public class StoreServiceImpl implements StoreService {
     
     @Override
     public StoreSearchResultDto findNearByStores(double lon, double lat, double radius){
-    	UserEntity user = securityService.getCurrentUser();
-    	List<ItemCategory> storeTypes = new ArrayList<ItemCategory>();
-    	List<ItemEntity> userItems = new ArrayList<ItemEntity>();
-    	
+    	UserEntity user = securityService.getCurrentUser();    	
     	
     	List<SearchResultWishDto> searchResultWishes = new ArrayList<SearchResultWishDto>();
     	SearchResultWishDto currWishResultDto = null;
     	List<SearchResultItemDto> currentItemsResultDto = null;
+    	
     	for(WishlistEntity wishListItem : user.getWishlists()){
     		currentItemsResultDto = new ArrayList<SearchResultItemDto>();
     		
@@ -78,13 +76,18 @@ public class StoreServiceImpl implements StoreService {
     			storeSearchResult = getNearestStoreWithDiscount(item, lon, lat, radius);
     			if(storeSearchResult != null && !storeSearchResult.isEmpty()){
     				currSearchResultItem = new SearchResultItemDto(item);
+    				currSearchResultItem.addStores(storeSearchResult);
     				currentItemsResultDto.add(currSearchResultItem);
     			}
     		}
     		
     		if(!currentItemsResultDto.isEmpty()){
+    			currWishResultDto = new SearchResultWishDto();
+    			currWishResultDto.setItemDtos(currentItemsResultDto);
+    			currWishResultDto.setWishListName(wishListItem.getName());
     			searchResultWishes.add(currWishResultDto);
     		}
+    		System.out.println("HI");
     	}
     	
     	StoreSearchResultDto result = new StoreSearchResultDto();
