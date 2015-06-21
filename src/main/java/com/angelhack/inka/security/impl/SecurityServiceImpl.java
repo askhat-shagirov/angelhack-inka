@@ -6,8 +6,6 @@ import com.angelhack.inka.repository.SellerRepository;
 import com.angelhack.inka.repository.UserRepository;
 import com.angelhack.inka.security.SecurityService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 /**
@@ -29,8 +27,9 @@ public class SecurityServiceImpl implements SecurityService {
 
     @Override
     public UserEntity getCurrentUser() {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        return userRepository.findByEmail(authentication.getName());
+//        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+//        return userRepository.findByEmail(authentication.getName());
+        return predefinedCurrentUser();
     }
 
     @Override
@@ -40,8 +39,27 @@ public class SecurityServiceImpl implements SecurityService {
 
     @Override
     public SellerEntity getCurrentSeller() {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        return sellerRepository.findByEmail(authentication.getName());
+        return predefinedCurrentSeller();
+//        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+//        return sellerRepository.findByEmail(authentication.getName());
+    }
+
+    private UserEntity predefinedCurrentUser() {
+        UserEntity userEntity = new UserEntity();
+        userEntity.setId(1L);
+        userEntity.setEmail("user@mail.com");
+        userEntity.setPassword("123");
+        userEntity.setFullname("John Doe");
+        return userEntity;
+    }
+
+    private SellerEntity predefinedCurrentSeller() {
+        SellerEntity sellerEntity = new SellerEntity();
+        sellerEntity.setId(1L);
+        sellerEntity.setEmail("seller@mail.com");
+        sellerEntity.setPassword("123");
+        sellerEntity.setFullname("Jane Doe");
+        return sellerEntity;
     }
 
 }
